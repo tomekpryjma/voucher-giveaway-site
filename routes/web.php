@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\VoucherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -32,4 +33,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+});
+
+Route::group(['prefix' => 'voucher'], function () {
+    Route::get('/', [VoucherController::class, 'index'])->name('voucher.index');
+    Route::get('/create', [VoucherController::class, 'create'])->name('voucher.create');
+    Route::get('/view/{id?}', [VoucherController::class, 'view'])->name('voucher.view');
 });
