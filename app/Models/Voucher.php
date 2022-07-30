@@ -15,4 +15,15 @@ class Voucher extends Model
     {
         return $this->belongsToMany(Category::class)->withTimestamps();
     }
+
+    public function postedBy()
+    {
+        return $this->belongsTo(User::class, 'posted_by');
+    }
+
+    public function claimedBy()
+    {
+        return $this->belongsTo(User::class, 'claimed_by');
+    }
+
 }
