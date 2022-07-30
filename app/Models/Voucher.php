@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -26,4 +27,8 @@ class Voucher extends Model
         return $this->belongsTo(User::class, 'claimed_by');
     }
 
+    public function scopeNotClaimed(Builder $query)
+    {
+        return $query->where('claimed_by', null);
+    }
 }
